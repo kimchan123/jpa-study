@@ -1,5 +1,7 @@
 package com.example.jpaselfstudy;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
@@ -48,6 +50,12 @@ class TeamTest {
     //id가 null이면 비영속, 있으면 준영속
     //isNew는 그냥 바로 entity를 persist하고 바로 반환
     //merge는 select query가 한번 나가야함
+
+    @Test
+    void test1() {
+        int a = 1;
+        assertThat(a).isEqualTo(0);
+    }
 }
 
 
