@@ -37,8 +37,4 @@ public class Member {
         this.name = name;
         this.team = team;
     }
-
-    public void changeTeam(Team team) {
-        this.team = team;
-    }
 }

@@ -1,15 +1,24 @@
 package com.example.jpaselfstudy;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.transaction.TestTransaction;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-@DataJpaTest
+@SpringBootTest
+@Transactional
 class TeamTest {
+
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+
+    private static final Member member = Member.builder()
+            .id(1L)
+            .name("name1")
+            .build();
 
     @Autowired
     private MemberRepository memberRepository;
@@ -22,31 +31,23 @@ class TeamTest {
 
     @Test
     void test() {
-        Team team1 = Team.builder()
-                .name("team1")
-                .build();
-        Team saveTeam1 = teamRepository.save(team1);
+//        Member member = Member.builder()
+//                .name("name1")
+//                .build();
 
-        Team team2 = Team.builder()
-                .name("team2")
-                .build();
-        Team saveTeam2 = teamRepository.save(team2);
-
-        Member member1 = Member.builder()
-                .name("member1")
-                .team(team1)
-                .build();
-        Member saveMember = memberRepository.save(member1);
-
-        em.flush();
+        String[] beanDefinitionNames = webApplicationContext.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            System.out.println("beanDefinitionName = " + beanDefinitionName);
+        }
+        memberRepository.save(member);
         em.clear();
-
-        Team findTeam1 = teamRepository.findById(1L).get();
-
-        List<Member> members = findTeam1.getMembers();
-        Member member = members.get(0);
-        member.setName("changedMember");
-        TestTransaction.flagForCommit(); // need this, otherwise the next line does a rollback
-        TestTransaction.end();
+        memberRepository.save(member);
     }
+
+    //isNew vs Merge
+    //id가 null이면 비영속, 있으면 준영속
+    //isNew는 그냥 바로 entity를 persist하고 바로 반환
+    //merge는 select query가 한번 나가야함
 }
+
+
