@@ -54,7 +54,7 @@ class TeamTest {
     @Test
     void test1() {
         int a = 1;
-        assertThat(a).isEqualTo(0);
+        assertThat(a).isEqualTo(1);
     }
 }
 
