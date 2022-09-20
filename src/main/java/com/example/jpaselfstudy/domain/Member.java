@@ -1,4 +1,4 @@
-package com.example.jpaselfstudy;
+package com.example.jpaselfstudy.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
