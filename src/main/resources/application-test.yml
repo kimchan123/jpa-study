@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:jpa-self-study-test;MODE=MYSQL;
+    url: jdbc:h2:mem:jpa-self-study-test
     username: sa
     password:
   h2:
@@ -10,4 +10,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+      properties:
+        hibernate:
+          show_sql: false
+          format_sql: false
     open-in-view: false
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 7070

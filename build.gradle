@@ -29,12 +29,6 @@ dependencies {
 
     //restAssured
     testImplementation 'io.rest-assured:rest-assured:4.4.0'
-
-    implementation "org.junit.jupiter:junit-jupiter:5.8.1"
-    implementation "org.testcontainers:testcontainers:1.17.2"
-    implementation "org.testcontainers:junit-jupiter:1.16.3"
-    implementation "org.testcontainers:mysql:1.16.3"
-
     implementation 'dev.akkinoc.spring.boot:logback-access-spring-boot-starter:3.3.2'
 }
 

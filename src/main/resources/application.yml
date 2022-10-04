@@ -4,10 +4,6 @@ spring:
     url: jdbc:h2:mem:jpa-self-study
     username: sa
     password:
-  #    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
-  #    url: jdbc:tc:mysql:8:///localhost
-  #    username: test_user
-  #    password: 1234
   h2:
     console:
       enabled: true
