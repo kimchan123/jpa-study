@@ -10,10 +10,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-      properties:
-        hibernate:
-          show_sql: false
-          format_sql: false
     open-in-view: false
   output:
     ansi:

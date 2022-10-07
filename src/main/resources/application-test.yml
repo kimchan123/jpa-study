@@ -4,16 +4,9 @@ spring:
     url: jdbc:h2:mem:jpa-self-study-test
     username: sa
     password:
-  h2:
-    console:
-      enabled: true
   jpa:
     hibernate:
       ddl-auto: update
-      properties:
-        hibernate:
-          show_sql: false
-          format_sql: false
     open-in-view: false
   output:
     ansi:

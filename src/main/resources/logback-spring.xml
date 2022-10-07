@@ -3,6 +3,13 @@
     <include resource="logback/console/console-appender.xml"/>
 
     <springProfile name="test">
+        <logger name="com.woowacourse.gongcheck" level="DEBUG">
+            <appender-ref ref="console-appender"/>
+        </logger>
+
+        <logger name="org.springframework" level="INFO">
+            <appender-ref ref="console-appender"/>
+        </logger>
         <!--sql 구문 출력-->
         <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
             <appender-ref ref="console-query-appender"/>

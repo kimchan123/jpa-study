@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +24,10 @@ public class Team {
     private String name;
 
     @Builder.Default
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @OneToMany
     private List<Member> members = new ArrayList<>();
 
     public void addMember(Member member) {
-        member.setTeam(this);
         this.members.add(member);
     }
 

@@ -32,7 +32,7 @@ public class PersistenceContextTest {
                 .build();
 
         final Member actual = memberRepository.save(detachMember);
-
+        System.out.println(actual.getId());
         assertThat(actual.getName()).isEqualTo("member");
     }
 
@@ -44,7 +44,6 @@ public class PersistenceContextTest {
                 .name("member")
                 .build();
         final Member savedMember = memberRepository.save(member);
-        System.out.println(savedMember.getId());
 
         Member detachMember = Member.builder()
                 .id(1L)
@@ -74,6 +73,18 @@ public class PersistenceContextTest {
         memberRepository.flush();
     }
 
+    @Test
+    void PK가_아닌_column으로_조회하면_영속성_컨텍스트의_도움을_받을수_없다() {
+        Member member = Member.builder()
+                .name("member")
+                .build();
+        final Member savedMember = memberRepository.save(member);
+        entityManager.clear();
+
+        final Optional<Member> actual = memberRepository.findByName("member");
+        //select 쿼리가 추가적으로 발생함
+        final Optional<Member> result = memberRepository.findByName("member");
+    }
     /**
      flush가 일어나는 3가지 경우
      1. em.flush()
