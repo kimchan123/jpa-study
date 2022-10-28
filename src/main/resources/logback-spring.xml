@@ -2,7 +2,7 @@
 <configuration>
     <include resource="logback/console/console-appender.xml"/>
 
-    <springProfile name="test">
+    <springProfile name="local, test">
         <logger name="com.woowacourse.gongcheck" level="DEBUG">
             <appender-ref ref="console-appender"/>
         </logger>

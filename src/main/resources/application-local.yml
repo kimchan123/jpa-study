@@ -1,15 +1,18 @@
 spring:
   datasource:
     write:
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:mem:jpa-self-study-write-test
+      driverClassName: org.h2.Driver
+      url: jdbc:h2:mem:jpa-self-study-write
       username: root
       password:
     read:
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:mem:jpa-self-study-read-test
+      driverClassName: org.h2.Driver
+      url: jdbc:h2:mem:jpa-self-study-read
       username: root
       password:
+  h2:
+    console:
+      enabled: true
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -25,6 +28,3 @@ spring:
   output:
     ansi:
       enabled: always
-
-server:
-  port: 7070

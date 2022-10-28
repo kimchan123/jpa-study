@@ -1,8 +1,9 @@
 package com.example.jpaselfstudy.application;
 
+import com.example.jpaselfstudy.application.response.MemberResponse;
 import com.example.jpaselfstudy.domain.Member;
 import com.example.jpaselfstudy.domain.MemberRepository;
-import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,14 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class MemberService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    public MemberService(final MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
+    public MemberResponse findMember(final Long id) {
+        final Optional<Member> member = memberRepository.findById(id);
+        return new MemberResponse(member.get().getName());
+    }
+
     @Transactional
-    public List<Member> findAll() {
-        return memberRepository.findAll();
+    public void insertMember() {
+        memberRepository.save(Member.builder()
+                .name("member")
+                .build()
+        );
     }
 }

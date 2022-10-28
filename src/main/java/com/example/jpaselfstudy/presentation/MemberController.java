@@ -1,10 +1,10 @@
 package com.example.jpaselfstudy.presentation;
 
 import com.example.jpaselfstudy.application.MemberService;
-import com.example.jpaselfstudy.domain.Member;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.example.jpaselfstudy.application.response.MemberResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,11 +16,15 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/api/members")
-    public List<String> findMembers() {
-        List<Member> members = memberService.findAll();
-        return members.stream()
-                .map(Member::getName)
-                .collect(Collectors.toList());
+    @GetMapping("/members")
+    public ResponseEntity<MemberResponse> findMember() {
+        final MemberResponse response = memberService.findMember(1L);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/members")
+    public ResponseEntity<Void> createMember() {
+        memberService.insertMember();
+        return ResponseEntity.noContent().build();
     }
 }

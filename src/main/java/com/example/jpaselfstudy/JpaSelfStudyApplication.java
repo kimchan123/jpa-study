@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JpaSelfStudyApplication {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(JpaSelfStudyApplication.class, args);
+        try {
+            SpringApplication.run(JpaSelfStudyApplication.class, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
