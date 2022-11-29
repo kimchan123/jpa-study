@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,9 +25,8 @@ public class Member {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
-    private Team team;
+    @Column(name = "team_id")
+    private Long teamId;
 
     @Builder.Default
     @OneToMany(mappedBy = "member")
@@ -39,19 +35,14 @@ public class Member {
     protected Member() {
     }
 
-    public Member(Long id, String name, Team team, List<OrderItem> orders) {
+    public Member(final Long id, final String name, final Long teamId, final List<OrderItem> orders) {
         this.id = id;
         this.name = name;
-        this.team = team;
+        this.teamId = teamId;
         this.orders = orders;
     }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", team=" + team +
-                '}';
+    public Member(final String name) {
+        this.name = name;
     }
 }

@@ -30,4 +30,8 @@ public class OrderItem {
         this.id = id;
         this.member = member;
     }
+
+    public OrderItem(final Member member) {
+        this.member = member;
+    }
 }
